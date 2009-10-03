@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		id="propertyConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- DataSource for push -->
+	<bean class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource"
+		id="dataSource">
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+
+	<bean
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+		id="sessionFactory">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.OSCacheProvider</prop>
+				<!--<prop key="hibernate.show_sql">true</prop>-->
+				<prop key="hibernate.c3p0.acquire_increment">2</prop>
+				<prop key="hibernate.c3p0.idle_test_period">300</prop>
+				<prop key="hibernate.c3p0.max_size">100</prop>
+				<prop key="hibernate.connection.release_mode">
+					after_statement</prop>
+				<prop key="hibernate.c3p0.min_size">5</prop>
+				<prop key="hibernate.c3p0.preferredTestQuery">select
+					1</prop>
+				<prop key="hibernate.c3p0.testConnectionOnCheckout">
+					true</prop>
+				<!-- prop key="hibernate.hbm2ddl.auto">update</prop -->
+				<prop key="hibernate.bytecode.use_reflection_optimizer">
+					true</prop>
+				<!--<prop key="hibernate.format_sql">true</prop>-->
+			</props>
+		</property>
+
+		<property name="mappingResources">
+			<list>
+				<value>com/sxi/override/digibanker/model/Func.hbm.xml</value>
+				<value>com/sxi/override/digibanker/model/ovrd/OverrideModel.hbm.xml
+				</value>
+				<value>com/sxi/override/digibanker/model/ovrd/OverrideHeader.hbm.xml
+				</value>
+				<value>com/sxi/override/digibanker/model/ovrd/OverrideDetail.hbm.xml
+				</value>
+				<value>com/sxi/override/digibanker/model/TestTransaction.hbm.xml
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="txmanager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="overrideDao" class="com.sxi.override.digibanker.dao.ovrd.OverrideDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="overrideTrackerDao" class="com.sxi.override.digibanker.dao.log.OverrideTrackerDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<tx:advice id="txAdvice" transaction-manager="txmanager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED"/>
+		<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="sxiServiceMethods"
+			expression="execution(* com.sxi.override.digibanker.service..*(..)) " />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="sxiServiceMethods" />
+	</aop:config>
+	
+</beans>

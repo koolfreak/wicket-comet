@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.sxi.override.digibanker.model.ovrd">
+	<class name="OverrideHeader" table="tbl_ovrd_hdr">
+			<id name="id" type="string">
+				<column name="id" length="32" />
+				<generator class="uuid.hex" />
+			</id>
+			<version name="version" column="version" />
+			
+			<property name="funcId" column="func_id"/>
+			<property name="ovrdStatus" type="integer">
+				<column name="ovrd_stat" default="0"/>
+			</property>
+			<property name="reqOvrdCnt">
+				<column name="req_ovrd_cnt" default="0"/>
+			</property>
+			<property name="submittedBy" column="submit_by"/>
+			<property name="submittedDate" column="submit_date" type="timestamp"/>
+			<property name="approveDate" column="approve_date" type="timestamp"/>
+			
+			<property name="refNo" column="refno"/>
+			<property name="reasonCancelled" column="reason_cancelled"/>
+			<property name="reasonRejected" column="reason_rejected"/>
+			
+			
+			
+		</class>
+</hibernate-mapping>

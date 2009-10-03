@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.sxi.override.digibanker.model.ovrd.OverrideModel" table="tbl_ovrd" >
+        <id name="id" type="string">
+            <column name="id" length="32" />
+            <generator class="uuid.hex" />
+        </id>
+        <version name="version" column="version" />
+        
+        <property name="funcCd" type="string">
+            <column name="func_cd" length="10"/>
+        </property>
+        <property name="ovrdType" type="string">
+            <column name="ovrdType"/>
+        </property>
+         <property name="status" type="integer">
+            <column name="ovrd_status" default="0"/>
+        </property>
+        <property name="reason" type="string">
+            <column name="reason" length="1000"/>
+        </property>
+        <property name="refNo" type="string">
+            <column name="ref_no" length="32"/>
+        </property>
+        <property name="txnDt" type="timestamp">
+            <column name="txn_dt"/>
+        </property>
+        <property name="deadline" type="date">
+            <column name="deadline"/>
+        </property>
+        <property name="requestBy" column=""></property>
+        <property name="hdrMdl" type="binary">
+            <column name="hdr_mdl"/>
+        </property>
+        <property name="dtlMdl" type="binary">
+            <column name="dtl_mdl"/>
+        </property>              
+        <property name="del" type="boolean">
+            <column name="del" not-null="true" />
+        </property>
+        <property name="ovrdKey" column="ovrd_key"/>
+    </class>
+</hibernate-mapping>
