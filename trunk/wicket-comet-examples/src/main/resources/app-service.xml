@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="overrideService" class="com.sxi.override.digibanker.service.ovrd.OverrideServiceImpl">
+		<property name="overrideDao" ref="overrideDao" />
+	</bean>
+	
+	<bean id="overrideTrackerService" class="com.sxi.override.digibanker.service.log.OverrideTrackingServiceImpl">
+		<property name="overrideTrackerDao" ref="overrideTrackerDao" />
+	</bean>
+
+</beans>

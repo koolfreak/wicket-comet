@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.sxi.override.digibanker.model">
+	<class name="Func" table="tbl_func">
+		<id name="id" type="string">
+			<column name="id" length="32" />
+			<generator class="uuid.hex" />
+		</id>
+		<version name="version" column="version" />
+
+		<property name="funcCode" column="func_cd" type="string" />
+		<property name="funcDesc" column="func_desc" type="string" />
+		<property name="reqOvrdCnt" type="int">
+			<column name="req_cnt" default="0" />
+		</property>
+		<property name="overridableType" type="int">
+			<column name="ovrd_type" default="0" />
+		</property>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app  xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+	<display-name>Wicket Contrib Cometd Examples</display-name>
+	<distributable/>
+	
+	<filter>
+		<filter-name>opensessioninview</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+		</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>opensessioninview</filter-name>
+		<url-pattern>/app/*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:appContext.xml,
+			classpath:app-dao.xml,
+			classpath:app-service.xml
+		</param-value>
+	</context-param>
+	
+	<servlet>
+		<servlet-name>wicket-contrib-cometd-examples</servlet-name>
+		<servlet-class>org.apache.wicket.protocol.http.WicketServlet</servlet-class>
+		<init-param>
+			<param-name>applicationClassName</param-name>
+			<param-value>org.wicketstuff.push.examples.application.ExampleApplication</param-value>
+		</init-param>
+		<init-param> 
+            <param-name>configuration</param-name> 
+            <param-value>deployment</param-value> 
+		</init-param> 
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>cometd</servlet-name>
+		<servlet-class>org.mortbay.cometd.continuation.ContinuationCometdServlet</servlet-class>
+		<init-param>
+			<param-name>timeout</param-name>
+			<param-value>15000</param-value>
+		</init-param>
+		<init-param>
+			<param-name>multi-timeout</param-name>
+			<param-value>1500</param-value>
+		</init-param>
+		<init-param>
+			<param-name>verbose</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>wicket-contrib-cometd-examples</servlet-name>
+		<url-pattern>/app/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Cometd -->
+
+
+	<servlet-mapping>
+		<servlet-name>cometd</servlet-name>
+		<url-pattern>/cometd/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>

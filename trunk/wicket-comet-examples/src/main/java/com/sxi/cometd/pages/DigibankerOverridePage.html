@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+  	<wicket:extend>
+  	<!-- display the transaction details -->
+  	<form wicket:id="txnform">
+  		<table>
+  			<tr>
+  				<td>Txn Code</td>
+  				<td>
+  					<span wicket:id="tranCode" />
+  				</td>
+  			</tr>
+  			<tr>
+  				<td>Txn Type</td>
+  				<td>
+  					<span wicket:id="tranType" />
+  				</td>
+  			</tr>
+  			<tr>
+  				<td>Txn Amount</td>
+  				<td>
+  					<span wicket:id="tranAmt" />
+  				</td>
+  			</tr>
+  			<tr>
+  				<td>Txn Dscp</td>
+  				<td>
+  					<span wicket:id="tranDscp" />
+  				</td>
+  			</tr>
+  		</table>
+  	</form>
+  	<!-- end display details -->
+  	<span wicket:id="feedback"></span>
+  	<form wicket:id="override">
+  		<div wicket:id="listOverride">
+  			<fieldset>
+  				<legend>Override</legend>
+  					<table>
+  						<tr>
+  							<td>Username:</td>
+  							<td>
+  								<select wicket:id="supervisor" ><option>1</option></select>
+  							</td>
+  						</tr>
+  						<tr>
+  							<td>Password:</td>
+  							<td>
+  								<input type="text" wicket:id="password" />
+  							</td>
+  						</tr>
+  						<tr>
+  							<td valign="top">Override Type:</td>
+  							<td align="center">
+  								<span wicket:id="overrideType">
+  									<input type="radio" wicket:id="localOverride" />&nbsp;Local<br/>
+  									<input type="radio" wicket:id="queuedOverride" />&nbsp;Queued<br/>
+  									<input type="radio" wicket:id="remoteOverride" />&nbsp;Remote
+  								</span>
+  							</td>
+  						</tr>
+  						<tr>
+  							<td colspan="2" align="center" valign="middle">
+  								<input type="submit" wicket:id="submit" value="Submit" />&nbsp;
+  								<input type="submit" wicket:id="cancel" value="Cancel" />
+  							</td>
+  						</tr>
+  					</table>
+  			</fieldset>
+  		</div>
+  	</form>
+ </wicket:extend>
+</body>
+</html>
+

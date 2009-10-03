@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+  <wicket:extend>
+  	<h1>Override Details</h1>
+  	<table>
+  		<tr>
+  			<td>Txn Code:</td>
+  			<td><span wicket:id="tranCode"/></td>
+  		</tr>
+  		<tr>
+  			<td>Txn Type:</td>
+  			<td><span wicket:id="tranType"/></td>
+  		</tr>
+  		<tr>
+  			<td>Txn Amt:</td>
+  			<td><span wicket:id="tranAmt"/></td>
+  		</tr>
+  		<tr>
+  			<td>Txn Dscp:</td>
+  			<td><span wicket:id="tranDscp"/></td>
+  		</tr>
+  	</table>
+  	<form wicket:id="supform">
+  		<table>
+  			<tr>
+  				<td>Supervisor Code:</td>
+  				<td><span wicket:id="supervisor"/></td>
+  			</tr>
+  			<tr>
+  				<td>Supervisor Password:</td>
+  				<td><input type="text" wicket:id="password"/></td>
+  			</tr>
+  		</table>
+  		<input type="button" wicket:id="accept" value="Aprrove"/>&nbsp;
+  		<input type="button" wicket:id="reject" value="Reject"/>&nbsp;
+  		<input type="button" wicket:id="transfer" value="Transfer"/>&nbsp;
+  		<input type="button" wicket:id="cancel" value="Cancel"/>&nbsp;
+  	</form>
+  </wicket:extend>
+</body>
+</html>
+
