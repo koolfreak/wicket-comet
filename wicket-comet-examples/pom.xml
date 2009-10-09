@@ -4,11 +4,11 @@
 
 	<parent>
 		<groupId>org.wicketstuff</groupId>
-		<artifactId>push-parent</artifactId>
+		<artifactId>wicket-comet</artifactId>
 		<version>1.4-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>push-examples</artifactId>
+	<artifactId>wicket-comet-examples</artifactId>
 	<packaging>war</packaging>
 
 
@@ -82,6 +82,12 @@
 			<groupId>org.mortbay.jetty</groupId>
 			<artifactId>jetty</artifactId>
 			<version>6.1.15</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -90,7 +96,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.wicketstuff</groupId>
-			<artifactId>push-core</artifactId>
+			<artifactId>wicket-comet-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

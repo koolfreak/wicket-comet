@@ -4,11 +4,11 @@
 
 	<parent>
 		<groupId>org.wicketstuff</groupId>
-		<artifactId>push-parent</artifactId>
+		<artifactId>wicket-comet</artifactId>
 		<version>1.4-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>push-core</artifactId>
+	<artifactId>wicket-comet-core</artifactId>
 	<packaging>jar</packaging>
 
 
