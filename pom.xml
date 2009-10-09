@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.wicketstuff</groupId>
-	<artifactId>push-parent</artifactId>
+	<artifactId>wicket-comet</artifactId>
 	<version>1.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
@@ -39,7 +39,7 @@
 
 	<properties>
 		<jetty.version>6.1.15</jetty.version>
-		<wicket.version>1.3.6</wicket.version>
+		<wicket.version>1.3.7</wicket.version>
 	</properties>
 
 	<dependencies>
