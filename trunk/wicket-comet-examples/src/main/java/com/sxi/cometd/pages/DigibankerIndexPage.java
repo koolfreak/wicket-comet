@@ -1,14 +1,15 @@
 package com.sxi.cometd.pages;
 
+import org.activemq.comet.interf.ResultCometQueue;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.push.examples.application.WicketCometdSession;
 
-import com.sxi.cometd.core.CometdRemote;
 import com.sxi.cometd.pages.utils.LoggedUsers;
 
 /**
@@ -19,6 +20,8 @@ import com.sxi.cometd.pages.utils.LoggedUsers;
 public class DigibankerIndexPage extends WebPage
 {
     private String user;
+    
+    @SpringBean private ResultCometQueue resultCometQueue;
 
     public DigibankerIndexPage()
     {
@@ -39,6 +42,7 @@ public class DigibankerIndexPage extends WebPage
 		WicketCometdSession.get().setCometUser(usr);
 		LoggedUsers.add(usr);
 		setResponsePage(DigiBasePage.class);
+		//resultCometQueue.resultNotice("Hello, world");
 	    }
 	});
 	add(form);
