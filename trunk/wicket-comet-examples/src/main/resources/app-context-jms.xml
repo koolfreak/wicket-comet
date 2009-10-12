@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- JMS - ActiveMQ connection -->
+	<bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="tcp://localhost:61616" />
+	</bean>
+	
+	<!-- JMS QUEUE'S DESTINATION -->
+	<bean id="resultDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="COMET.RESULT_QUEUE"/>
+	</bean>
+	
+
+	<!-- RESULT JMS QUEUE -->
+	<bean id="resultQueueTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<ref bean="activeMQConnectionFactory"/>
+		</property>
+		<property name="defaultDestination" ref="resultDestination"></property>
+	</bean>
+	<bean id="resultQueueComet" class="org.activemq.comet.impl.CometQueueImpl">
+		<property name="jmsTemplate" ref="resultQueueTemplate"/>
+	</bean>
+	<!-- RESULT JMS QUEUE LISTENER -->
+	<bean id="resultListenerContainer" class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+	    <property name="connectionFactory" ref="activeMQConnectionFactory"/>
+	    <property name="destination" ref="resultDestination"/>
+	    <property name="messageListener" ref="resultListener" />
+	</bean>
+	<bean id="resultListener" class="org.activemq.comet.listener.ResultListener"/>
+	
+</beans>
