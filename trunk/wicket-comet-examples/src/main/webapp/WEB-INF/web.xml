@@ -29,8 +29,8 @@
 		<param-value>
 			classpath:appContext.xml,
 			classpath:app-dao.xml,
-			classpath:app-service.xml,
-			classpath:app-context-jms.xml
+			classpath:app-service.xml
+			<!--  classpath:app-context-jms.xml -->
 		</param-value>
 	</context-param>
 	
