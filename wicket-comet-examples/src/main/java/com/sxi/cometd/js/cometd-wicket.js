@@ -4,12 +4,16 @@ function CometWicket()
 }
 
 CometWicket.prototype.request = function(msg) {
-	var conf = confirm(msg.ReplaceAll("#","\n"));
+	var conf = confirm(msg);
 	if(conf)
 	{
 		//true here
 		listoverride();
 	}
+}
+
+CometWicket.prototype.alertOverride = function(msg) {
+	alert(msg);
 }
 
 String.prototype.ReplaceAll = function(stringToFind,stringToReplace){

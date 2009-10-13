@@ -78,7 +78,7 @@ public class ViewOverridePage extends DigiBasePage
 		    return;
 		}*/
 		
-		boolean apprv = true;// = trackingService.acceptTransaction(ovrdHead, model.getOvrdKey());
+		boolean apprv = trackingService.acceptTransaction(ovrdHead, model.getOvrdKey());
 		if(apprv)
 		{
         		final ChannelEvent event = new ChannelEvent(requestee);
@@ -96,6 +96,7 @@ public class ViewOverridePage extends DigiBasePage
         		    overrideService.update(model);
         		//}
         		//target.appendJavascript("sxicometd.alerts.failed('Override success.')");
+        		setRedirect(true);
         		setResponsePage(ListOverridePage.class);
 		}
 		else
@@ -127,11 +128,13 @@ public class ViewOverridePage extends DigiBasePage
         		
         		getChannelService().publish(event);
         		
-        		if(ovrdHead.getOvrdStatus() == OverrideConstants.OVRD_STATUS_REJECTED)
-        		{
-        		    model.setStatus(1);
+        		/*if(ovrdHead.getOvrdStatus() == OverrideConstants.OVRD_STATUS_REJECTED)
+        		{*/
+        		    model.setStatus(4);
         		    overrideService.update(model);
-        		}
+        		//}
+        		setRedirect(true);
+            		setResponsePage(ListOverridePage.class);
 		}
 		else
 		{
@@ -141,7 +144,7 @@ public class ViewOverridePage extends DigiBasePage
 	};
 	form.add(reject);
 	
-	final AjaxButton transfer = new AjaxButton("transfer",form)
+	/*final AjaxButton transfer = new AjaxButton("transfer",form)
 	{
 	    
 	    @Override
@@ -195,7 +198,7 @@ public class ViewOverridePage extends DigiBasePage
 		
 	    }
 	};
-	form.add(cancel.setDefaultFormProcessing(false));
+	form.add(cancel.setDefaultFormProcessing(false)); */
     }
     
 }
