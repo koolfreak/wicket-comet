@@ -21,7 +21,7 @@ public class DigibankerIndexPage extends WebPage
 {
     private String user;
     
-    @SpringBean private ResultCometQueue resultCometQueue;
+   // @SpringBean private ResultCometQueue resultCometQueue;
 
     public DigibankerIndexPage()
     {
