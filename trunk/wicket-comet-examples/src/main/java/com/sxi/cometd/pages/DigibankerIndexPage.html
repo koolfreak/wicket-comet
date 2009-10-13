@@ -3,10 +3,47 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <body>
-  		<form wicket:id="userform">
-       		User:&nbsp;<input type="text" wicket:id="user"/><br/>
-       		<input type="submit" value="Submit" wicket:id="log"/>
-       </form>
+	<h1>wicket-cometd - Demo</h1>
+	<table>
+		<tr>
+			<td>
+				<h2>Cometd library to use:</h2>
+				<h3>For development & deployment to Jetty server</h3>
+				<ul>
+					<li>cometd-jetty-6.1.15</li>
+				</ul>
+				<h3>For deployment to Glassfish server v2.1 and higher</h3>
+				<ul>
+					<li>grizzly-cometd-client-1.9.9</li>
+					<li>grizzly-cometd-1.9.9</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1px black;">
+		  		<form wicket:id="userform">
+		       		User:&nbsp;<input type="text" wicket:id="user"/>&nbsp;
+		       		<input type="submit" value="Submit" wicket:id="log"/>
+		       </form>
+	       </td>
+       </tr>
+       <tr>
+       	<td>
+       		&nbsp;
+       	</td>
+       </tr>
+       <tr>
+       	<td>
+       		other dependency:<br />
+       		<ul>
+       			<li>wicket-1.3.7</li>
+       			<li>spring-2.5.6</li>
+       			<li>hibernate-3.2.5.ga</li>
+       			<li>servlet-api-2.5 (must use 2.5 > )</li>
+       		</ul>
+       	</td>
+       </tr>
+	</table>
 </body>
 </html>
 
