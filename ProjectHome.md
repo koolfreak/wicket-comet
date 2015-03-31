@@ -1,0 +1,1 @@
+This integration is based on push-parent from <a href='http://wicketstuff.org/maven/repository/org/wicketstuff/'>wicketstuff</a>.
